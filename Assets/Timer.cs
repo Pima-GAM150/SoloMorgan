@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour {
 
-	float timeLeft = 30f;
+	float timeLeft = 35f;
 	public GameObject winText;
 	public Text text;
 	public GameObject player;
+	private bool winCondition = true;
 
 		// Use this for initialization
 	void Start () {
@@ -18,18 +19,22 @@ public class Timer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		timeLeft -= Time.deltaTime;
-		text.text = "Time Left:" + Mathf.Round (timeLeft);
-		if (timeLeft < 0) {
-			timeLeft = 0;
-			winText.gameObject.SetActive (true);
-		} 
-		else {
-			winText.gameObject.SetActive (false);
+		if (winCondition) {
+			timeLeft -= Time.deltaTime;
+			text.text = "Time Left:" + Mathf.Round (timeLeft);
+			if (timeLeft < 0) {
+				timeLeft = 0;
+				winText.gameObject.SetActive (true);
+			} 
+			else {
+				winText.gameObject.SetActive (false);
+			}
+				
 		}
-		if (player.transform.position.y < -3) {
-			timeLeft = 0;
-		
-		}
+			
 	}
+	public void TimeStop()
+	{
+		winCondition = false;
+	}	
 }

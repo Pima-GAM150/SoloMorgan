@@ -5,7 +5,7 @@ using UnityEngine;
 public class WinAndLose : MonoBehaviour {
 
 	public GameObject deadText;
-
+	public GameObject refTimer;
 	// Use this for initialization
 	void Start () {
 		
@@ -17,6 +17,7 @@ public class WinAndLose : MonoBehaviour {
 
 		if (transform.position.y < -3) {
 			deadText.gameObject.SetActive (true);
+			refTimer.GetComponent<Timer> ().TimeStop ();
 		} 
 		else {
 			deadText.gameObject.SetActive (false);
